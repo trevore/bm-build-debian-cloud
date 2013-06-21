@@ -16,8 +16,8 @@ host_packages+=('debootstrap')
 
 #BM Specific packages
 packages+=('mosh')
-packages+=('mtr-tiny')
 packages+=('vim')
+packages+=('vim-scripts')
 packages+=('screen')
 packages+=('git')
 packages+=('htop')
