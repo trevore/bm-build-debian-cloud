@@ -13,3 +13,15 @@ packages+=('file')
 # In order to make sure a volume is not busy, before unmounting we need lsof
 host_packages+=('lsof')
 host_packages+=('debootstrap')
+
+#BM Specific packages
+packages+=('mosh')
+packages+=('mtr-tiny')
+packages+=('vim')
+packages+=('screen')
+packages+=('git')
+packages+=('htop')
+packages+=('python')
+packages+=('etckeeper')
+packages+=('rcconf')
+packages+=('htop')
