@@ -6,7 +6,7 @@ name_suffix=$(date +%Y%m%d)
 description=
 snapshot_id=
 volume_id=
-volume_size='2'
+volume_size='20'
 apt_mirrors='http://http.debian.net/debian'
 
 # EC2 known regions
