@@ -20,6 +20,10 @@ You can run them via the `--plugin` option when bootstrapping:
 * `remount`  
   Remounts the bootstrapped volume.
   With this plugin you can inspect the results of the bootstrapping process without launching an instance.
+* `lvm-root-volume`  
+  Partitions the root volume with LVM.
+  It creates 1 GB of swap then fills the rest.
+  When booting it will create a 3rd partition if there is extra space, add it to the LVM VG and expand the volume.
 
 ## Other plugins ##
 The following is a list of external plugins you can use with build-debian-cloud.
