@@ -19,9 +19,6 @@ function cleanup_loopback_mount () {
 
   if [ -n "$base_device_path" ]; then
     log "Deleting whole-disk loopback device $base_device_path ahead of unclean exit."
-    # A complete cleanup job involves both kpartx and losetup. Whatever we can
-    # clean up is best.
-    kpartx -d $base_device_path
     losetup -d $base_device_path
   fi
 
