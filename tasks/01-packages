@@ -8,6 +8,8 @@ packages+=('locales')
 # Needed for the init scripts
 packages+=('file')
 
+packages+=('grub-pc')
+
 # We will need to format the volume, so we need xfsprogs
 [ $filesystem = 'xfs' ] && host_packages+=('xfsprogs')
 # In order to make sure a volume is not busy, before unmounting we need lsof
