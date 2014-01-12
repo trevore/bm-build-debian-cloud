@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# Change NTP to use Google servers instead of Debian pool
+
+CONFIGURATION_FILE=etc/ntp.conf
+CONFIGURATION_TEMP_FILE=etc/ntp.conf.tmp
+
+mv $imagedir/$CONFIGURATION_FILE $imagedir/$CONFIGURATION_TEMP_FILE
+grep -v '^server\s\+' <$imagedir/$CONFIGURATION_TEMP_FILE >$imagedir/$CONFIGURATION_FILE
+echo "server metadata.google.internal" >>$imagedir/$CONFIGURATION_FILE
+rm $imagedir/$CONFIGURATION_TEMP_FILE
+
