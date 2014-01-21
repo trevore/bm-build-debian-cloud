@@ -4,7 +4,7 @@
 
 configuration_file=etc/ntp.conf
 
-sed --in-place=.tmp 's/^server\s\+/# &/' $imagedir/$configuration_file
+sed --in-place=.tmp '/^server\s\+/d' $imagedir/$configuration_file
 echo "# Use server located on the host machine to avoid network traffic" >>$imagedir/$configuration_file
 echo "server metadata.google.internal iburst" >>$imagedir/$configuration_file
 
