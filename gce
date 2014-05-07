@@ -9,6 +9,8 @@ image_name_suffix=v$(date +%Y%m%d)
 build_date=$(date +%Y-%m-%d)
 volume_size='10'
 apt_mirrors='http://gce_debian_mirror.storage.googleapis.com/ http://http.debian.net/debian'
+backports_mirrors='http://gce_debian_mirror.storage.googleapis.com/ http://ftp.debian.org/debian'
+use_backports_kernel=false
 gce_kernel=projects/google/global/kernels/gce-v20130813
 
 # $description is set later if it has no value yet. This is
@@ -36,6 +38,8 @@ ${txtund}Bootstrapping${txtdef}
     --name SUFFIX                 Image name suffix (${txtbld}${name_suffix}${txtdef})
     --description DESC            Description of the image (${txtbld}${default_description}${txtdef})
     --apt-mirrors \"URL[ URL...]\"  APT mirror URLs, space-separated (${txtbld}${apt_mirrors}${txtdef})
+    --backports-mirrors \"URL[ URL...]\"  Backports APT mirror URLs, space-separated (${txtbld}${apt_mirrors}${txtdef})
+    --use-backports-kernel [true|false]  True if backports kernel should be used (${txtbld}${apt_mirrors}${txtdef})
 
 ${txtund}GCE${txtdef}
     --gcs-dest URL                Google Cloud Storage image destination URL prefix (${txtbld}${gcs_dest}${txtdef})
@@ -50,22 +54,24 @@ ${txtund}Other options${txtdef}
 # Run through the parameters and save them to variables.
 while [ $# -gt 0 ]; do
 	case $1 in
-		--arch)             arch=$2;                       shift 2 ;;
-		--codename)         codename=$2;                   shift 2 ;;
-		--filesystem)       filesystem=$2;                 shift 2 ;;
-		--volume-size)      volume_size=$2;                shift 2 ;;
-		--name)             name_suffix=$2;                shift 2 ;;
-		--description)      description=$2;                shift 2 ;;
-		--apt-mirrors)      apt_mirrors=$2;                shift 2 ;;
-		--gcs-dest)         gcs_dest=$2;                   shift 2 ;;
-		--gce-project)      gce_project=$2;                shift 2 ;;
-		--gce-kernel)       gce_kernel=$2;                 shift 2 ;;
-		--timezone)         timezone=$2;                   shift 2 ;;
-		--locale)           locale=$2;                     shift 2 ;;
-		--charmap)          charmap=$2;                    shift 2 ;;
-		--plugin)           plugins+=("$2");               shift 2 ;;
-		--debug)            set -x;                        shift   ;;
-		-h|--help)          printf -- "$help";             exit 0  ;;
+		--arch)                 arch=$2;                       shift 2 ;;
+		--codename)             codename=$2;                   shift 2 ;;
+		--filesystem)           filesystem=$2;                 shift 2 ;;
+		--volume-size)          volume_size=$2;                shift 2 ;;
+		--name)                 name_suffix=$2;                shift 2 ;;
+		--description)          description=$2;                shift 2 ;;
+		--apt-mirrors)          apt_mirrors=$2;                shift 2 ;;
+		--backports-mirrors)    backports_mirrors=$2;          shift 2 ;;
+		--use-backports-kernel) use_backports_kernel=$2;       shift 2 ;;
+		--gcs-dest)             gcs_dest=$2;                   shift 2 ;;
+		--gce-project)          gce_project=$2;                shift 2 ;;
+		--gce-kernel)           gce_kernel=$2;                 shift 2 ;;
+		--timezone)             timezone=$2;                   shift 2 ;;
+		--locale)               locale=$2;                     shift 2 ;;
+		--charmap)              charmap=$2;                    shift 2 ;;
+		--plugin)               plugins+=("$2");               shift 2 ;;
+		--debug)                set -x;                        shift   ;;
+		-h|--help)              printf -- "$help";             exit 0  ;;
 		*)             die "Unrecognized option: $1" \
     "Type '$0 --help' to see a list of possible options"; ;;
 	esac

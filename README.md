@@ -1,4 +1,6 @@
-# Debian bootstrapping script for Amazon machine images and Google Compute Engine images #
+#*This project has been superseeded by [bootstrap-vz](https://github.com/andsens/bootstrap-vz) and is no longer maintained.*#
+
+## Debian bootstrapping script for Amazon machine images and Google Compute Engine images ##
 
 This script bootstraps a vanilla Debian installation to create either
 an Amazon machine image or a Google Compute Engine image.
